@@ -1,12 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
-<!--    <link rel="stylesheet" href="static/style.css">-->
+    <title>Kontakt Formasi</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+            overflow: hidden;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            display: inline-block;
+            color: black;
+            text-align: left;
+        }
+
+        .form input, .form textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>hsefsioi</h1>
+    <div class="navbar">
+        <div class="logo">Bog'lanish</div>
+        <div class="links">
+            <a href="/root/static">Bosh sahifa</a>
+            <a href="about">Haqida</a>
+            <a href="Fitnes">Fitness</a>
+            <a href="food">M.Qidirish</a>
+        </div>
+    </div>
+
+    <div class="snow" id="snow"></div>
+
+    <div class="container">
+        <h1>Biz bilan bog'laning</h1>
+        <div class="form">
+            <label for="name">Ismingiz:</label>
+            <input type="text" id="name" placeholder="Ismingizni kiriting">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Emailingizni kiriting">
+
+            <label for="message">Xabar:</label>
+            <textarea id="message" rows="4" placeholder="Xabaringizni yozing"></textarea>
+
+            <button type="submit">Yuborish</button>
+        </div>
+    </div>
+
+    <script>
+        const snowContainer = document.getElementById('snow');
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflake.innerHTML = '&#10052;';
+            snowContainer.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 50);
+    </script>
 </body>
 </html>

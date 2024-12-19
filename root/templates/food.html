@@ -1,46 +1,345 @@
 <!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
+<!--<html lang="uz">-->
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Mahsulot Qidirish</title>-->
+<!--    <title>Mahsulot Qidiruv</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 20px;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            border: 1px solid #ddd;-->
+<!--            padding: 8px;-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #f4f4f4;-->
+<!--        }-->
+<!--        #calorieModal {-->
+<!--            width: 40%;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);-->
+<!--        }-->
+
+<!--    </style>-->
+
+<!--    <script>-->
+<!--        function showCalories(calories) {-->
+<!--            const activities = [-->
+<!--              { name: "Yugurish (8 km/soat)", rate: 500 },-->
+<!--              { name: "Yurish (5 km/soat)", rate: 300 },-->
+<!--              { name: "Velosipedda uchish (15 km/soat)", rate: 400 },-->
+<!--        ];-->
+
+<!--            const activityList = activities.map(activity => {-->
+<!--                const time = (calories / activity.rate).toFixed(2);-->
+<!--                return `<p>${activity.name}: ${time} soat</p>`;-->
+<!--            }).join("");-->
+
+<!--            document.getElementById("activityList").innerHTML = activityList;-->
+<!--            document.getElementById("calorieModal").style.display = "block";-->
+<!--}-->
+
+<!--    function closeModal() {-->
+<!--        document.getElementById("calorieModal").style.display = "none";-->
+<!--}-->
+
+<!--    </script>-->
+
 <!--</head>-->
 <!--<body>-->
-<!--    <h1>Mahsulot Qidirish</h1>-->
-<!--    <form method="POST">-->
+<!--    <h1>Mahsulotlarni Qidirish</h1>-->
+<!--    <form method="GET" action="/food">-->
+<!--        <label for="query">Mahsulot nomini kiriting:</label><br>-->
 <!--        {% csrf_token %}-->
-<!--        <label for="product_name">Mahsulot nomini kiriting:</label>-->
-<!--        <input type="text" id="product_name" name="product_name" placeholder="Masalan: Jabłko" required>-->
-<!--        <br><br>-->
-
-<!--        <label for="lang">Tilni tanlang:</label>-->
-<!--        <select id="lang" name="lang">-->
-<!--            <option value="en">Inglizcha</option>-->
-<!--            <option value="pl">Polsha</option>-->
-<!--            <option value="es">Ispancha</option>-->
-<!--            &lt;!&ndash; API qo'llab-quvvatlaydigan tillarni qo'shing &ndash;&gt;-->
-<!--        </select>-->
-<!--        <br><br>-->
-
+<!--        <input type="file" name="image" accept="image/*" >-->
+<!--        <input type="text" id="query" name="query" placeholder="Masalan, Osh..." value="{{ query }}">-->
 <!--        <button type="submit">Qidirish</button>-->
 <!--    </form>-->
 
-<!--    {% if error %}-->
-<!--        <p style="color: red;">{{ error }}</p>-->
+<!--    {% if results %}-->
+<!--    <h2>Qidiruv natijalari</h2>-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>Tur</th>-->
+<!--                <th>Rasmi</th>-->
+<!--                <th>Mahsulot nomi</th>-->
+<!--                <th>Kaloriya</th>-->
+<!--                <th>Protein</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {% for result in results %}-->
+<!--            <tr>-->
+<!--                <td>{{ result.0 }}</td>-->
+<!--                <td></td>-->
+<!--                <td>{{ result.1 }}</td>-->
+<!--                <td onclick="showCalories(250)">{{ result.2 }}</td>-->
+<!--                <td>{{ result.3 }}</td>-->
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    {% else %}-->
+<!--        <p>Hech narsa topilmadi. Qaytadan urinib ko‘ring!</p>-->
 <!--    {% endif %}-->
 
-<!--    {% if data %}-->
-<!--        <h2>Qidiruv Natijalari:</h2>-->
-<!--        <ul>-->
-<!--            {% for key, value in data.items %}-->
-<!--                <li><strong>{{ key }}:</strong> {{ value }}</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-<!--    {% endif %}-->
+<!--    <div id="calorieModal" style="display:none; position:fixed; top:20%; left:30%; background-color:white; border:1px solid black; padding:20px;">-->
+<!--        <h3>Kaloriyani sarflash uchun faoliyatlar</h3>-->
+<!--        <div id="activityList"></div>-->
+<!--        <button onclick="closeModal()">Yopish</button>-->
+<!--    </div>-->
 <!--</body>-->
 <!--</html>-->
 
 
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulot Qidiruv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffcc00;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+
+        body {
+            cursor: url('https://cdn-icons-png.flaticon.com/512/4276/4276741.png'), auto;
+        }
+
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444;
+            color: white;
+        }
+
+
+        #calorieModal {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 30%;
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            padding: 20px;
+            width: 40%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #calorieModal h3 {
+            margin-top: 0;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="logo">Yangi Yil Qidiruv</div>
+    <div>
+        <a href="/root/static">Bosh sahifa</a>
+        <a href="about">Haqida</a>
+        <a href="contact">Bog'lanish</a>
+    </div>
+</div>
+
+<h1>Mahsulotlarni Qidirish</h1>
+<form method="GET" action="/food">
+    <label for="query">Mahsulot nomini kiriting:</label><br>
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*">
+    <input type="text" id="query" name="query" placeholder="Masalan, Osh..." value="{{ query }}">
+    <button type="submit">Qidirish</button>
+</form>
+
+{% if results %}
+<h2>Qidiruv natijalari</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Tur</th>
+        <th>Rasmi</th>
+        <th>Mahsulot nomi</th>
+        <th>Kaloriya</th>
+        <th>Protein</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+    <tr>
+        <td>{{ result.0 }}</td>
+        <td>
+            <img
+                 src="{{ result.1 }}">
+        </td>
+        <td>{{ result.1 }}</td>
+        <td onclick="showCalories(250)">{{ result.2 }}</td>
+        <td>{{ result.3 }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Tur</th>-->
+<!--        <th>Rasmi</th>-->
+<!--        <th>Mahsulot nomi</th>-->
+<!--        <th>Kaloriya</th>-->
+<!--        <th>Protein</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    {% for result in results %}-->
+<!--    <tr>-->
+<!--        <td>{{ result.0 }}</td>-->
+<!--        <td><img class="fakeimg"-->
+<!--                 src="{{ result.img_url.url}}"></td>-->
+<!--        <td>{{ result.1 }}</td>-->
+<!--        <td onclick="showCalories(250)">{{ result.2 }}</td>-->
+<!--        <td>{{ result.3 }}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--    </tbody>-->
+<!--</table>-->
+{% else %}
+<p>Hech narsa topilmadi. Qaytadan urinib ko‘ring!</p>
+{% endif %}
+
+<div id="calorieModal">
+    <h3>Kaloriyani sarflash uchun faoliyatlar</h3>
+    <div id="activityList"></div>
+    <button onclick="closeModal()">Yopish</button>
+</div>
+
+<script>
+    // Qor effektini yaratish
+    const snowflakes = Array.from({length: 50});
+    snowflakes.forEach(() => {
+        const snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        snowflake.textContent = "\u2744";
+        document.body.appendChild(snowflake);
+    });
+
+    function showCalories(calories) {
+        const activities = [
+            {name: "Yugurish (8 km/soat)", rate: 500},
+            {name: "Yurish (5 km/soat)", rate: 300},
+            {name: "Velosipedda uchish (15 km/soat)", rate: 400},
+        ];
+
+        const activityList = activities.map(activity => {
+            const time = (calories / activity.rate).toFixed(2);
+            return `<p>${activity.name}: ${time} soat</p>`;
+        }).join("");
+
+        document.getElementById("activityList").innerHTML = activityList;
+        document.getElementById("calorieModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("calorieModal").style.display = "none";
+    }
+</script>
+</body>
+</html>
 
 
 <!--<!DOCTYPE html>-->
@@ -83,66 +382,3 @@
 <!--    {% endif %}-->
 <!--</body>-->
 <!--</html>-->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        .recipe {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
-        .recipe:last-child {
-            border-bottom: none;
-        }
-        .recipe h2 {
-            font-size: 20px;
-            color: #555;
-            margin: 0;
-        }
-        .recipe p {
-            font-size: 16px;
-            color: #777;
-            margin: 5px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Recipes</h1>
-        {% if recipes %}
-            {% for recipe in recipes %}
-                <div class="recipe">
-                    <h2>{{ recipe.name }}</h2>
-                    <p><strong>Calories:</strong> {{ recipe.calories }}</p>
-                    <p><strong>Description:</strong> {{ recipe.description }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No recipes found for the given calorie range.</p>
-        {% endif %}
-    </div>
-</body>
-</html>
-
-

@@ -1,0 +1,321 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Product Details</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 20px;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 50%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin: 20px auto;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            border: 1px solid #ddd;-->
+<!--            padding: 8px;-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #f4f4f4;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Mahsulot Tafsilotlari</h1>-->
+
+<!--    {% if product %}-->
+<!--        <h2>{{ product.name }}</h2>-->
+<!--        <p><strong>Kaloriya:</strong> {{ product.calories }}</p>-->
+<!--        <p><strong>Protein:</strong> {{ product.protein }}g</p>-->
+
+<!--        <h3>Kaloriyani sarflash uchun mashg'ulotlar:</h3>-->
+<!--        <ul>-->
+<!--            {% for activity, time in product.burn_time.items %}-->
+<!--                <li>{{ activity }}: {{ time }} soat</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    {% else %}-->
+<!--        <p>Mahsulot topilmadi!</p>-->
+<!--    {% endif %}-->
+
+<!--    <a href="/search/">Orqaga qaytish</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="uz">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Caloria AI - Salomatlik Ma'lumotlari</title>-->
+<!--    <style>-->
+<!--        /* Umumiy Stil */-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/burger_cursor.png'), auto; /* Cursor animatsiyasi */-->
+<!--            font-family: 'Poppins', sans-serif;-->
+<!--            scroll-behavior: smooth;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            background-color: #f4f4f4;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        /* Navbar */-->
+<!--        nav {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            background-color: #2c3e50;-->
+<!--            padding: 15px 50px;-->
+<!--            position: sticky;-->
+<!--            top: 0;-->
+<!--            z-index: 1000;-->
+<!--        }-->
+
+<!--        nav .logo {-->
+<!--            color: #fff;-->
+<!--            font-size: 1.8rem;-->
+<!--            font-weight: bold;-->
+<!--            transition: transform 0.3s;-->
+<!--        }-->
+
+<!--        nav .logo:hover {-->
+<!--            transform: scale(1.1);-->
+<!--        }-->
+
+<!--        nav ul {-->
+<!--            list-style: none;-->
+<!--            display: flex;-->
+<!--        }-->
+
+<!--        nav ul li {-->
+<!--            margin: 0 15px;-->
+<!--        }-->
+
+<!--        nav ul li a {-->
+<!--            color: #fff;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 1.2rem;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+
+<!--        nav ul li a:hover {-->
+<!--            color: #f39c12;-->
+<!--        }-->
+
+<!--        /* Asosiy Qism */-->
+<!--        .hero {-->
+<!--            text-align: center;-->
+<!--            padding: 80px 20px;-->
+<!--            background: url('https://source.unsplash.com/1600x900/?healthy-food') no-repeat center/cover;-->
+<!--            color: #fff;-->
+<!--            position: relative;-->
+<!--        }-->
+
+<!--        .hero h1 {-->
+<!--            font-size: 3rem;-->
+<!--            margin-bottom: 20px;-->
+<!--            animation: fadeInDown 1s ease-out;-->
+<!--        }-->
+
+<!--        .hero p {-->
+<!--            font-size: 1.5rem;-->
+<!--            animation: fadeInUp 1s ease-out;-->
+<!--        }-->
+
+<!--        @keyframes fadeInDown {-->
+<!--            from {-->
+<!--                opacity: 0;-->
+<!--                transform: translateY(-50px);-->
+<!--            }-->
+<!--            to {-->
+<!--                opacity: 1;-->
+<!--                transform: translateY(0);-->
+<!--            }-->
+<!--        }-->
+
+<!--        @keyframes fadeInUp {-->
+<!--            from {-->
+<!--                opacity: 0;-->
+<!--                transform: translateY(50px);-->
+<!--            }-->
+<!--            to {-->
+<!--                opacity: 1;-->
+<!--                transform: translateY(0);-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Bo‘limlar */-->
+<!--        .section {-->
+<!--            padding: 50px;-->
+<!--            text-align: center;-->
+<!--            background-color: #fff;-->
+<!--            margin: 20px 0;-->
+<!--            border-radius: 15px;-->
+<!--            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);-->
+<!--            transition: transform 0.3s, box-shadow 0.3s;-->
+<!--        }-->
+
+<!--        .section:hover {-->
+<!--            transform: translateY(-10px);-->
+<!--            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        .section img {-->
+<!--            width: 150px;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        /* Footer */-->
+<!--        footer {-->
+<!--            background-color: #2c3e50;-->
+<!--            color: #fff;-->
+<!--            text-align: center;-->
+<!--            padding: 20px;-->
+<!--            margin-top: 40px;-->
+<!--        }-->
+
+<!--        footer p {-->
+<!--            margin: 0;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    &lt;!&ndash; Navbar &ndash;&gt;-->
+<!--    <nav>-->
+<!--        <div class="logo">Caloria AI</div>-->
+<!--        <ul>-->
+<!--            <li><a href="#about">Haqida</a></li>-->
+<!--            <li><a href="#diet">Dietalar</a></li>-->
+<!--            <li><a href="#fitness">Fitness</a></li>-->
+<!--            <li><a href="#contact">Aloqa</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+<!--    &lt;!&ndash; Hero Qism &ndash;&gt;-->
+<!--    <div class="hero">-->
+<!--        <h1>Salomatlik va Dieta Yechimlari</h1>-->
+<!--        <p>Kunlik kaloriya hisob-kitobi va sog‘lom turmush tarzi</p>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Bo‘limlar &ndash;&gt;-->
+<!--    <div class="section" id="about">-->
+<!--        <img src="https://img.icons8.com/ios-filled/100/4caf50/apple.png" alt="Sog‘lom Oziq-ovqat">-->
+<!--        <h2>Sog‘lom Oziq-ovqat</h2>-->
+<!--        <p>Sizning tanangiz uchun kerakli vitaminlar va minerallar.</p>-->
+<!--    </div>-->
+
+<!--    <div class="section" id="diet">-->
+<!--        <img src="https://img.icons8.com/ios-filled/100/f39c12/salad.png" alt="Dietalar">-->
+<!--        <h2>Dietalar</h2>-->
+<!--        <p>Turli xil dietalar va ularning foydali tomonlari haqida bilib oling.</p>-->
+<!--    </div>-->
+
+<!--    <div class="section" id="fitness">-->
+<!--        <img src="https://img.icons8.com/ios-filled/100/ff6f61/exercise.png" alt="Fitness">-->
+<!--        <h2>Fitness Mashg‘ulotlari</h2>-->
+<!--        <p>Jismoniy mashqlar yordamida shaklga keling va sog‘lom bo‘ling.</p>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Footer &ndash;&gt;-->
+<!--    <footer>-->
+<!--        <p>&copy; 2024 Caloria AI. Barcha huquqlar himoyalangan.</p>-->
+<!--    </footer>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+<!--INSERT INTO desserts (id, name, calories, protein, img_url) VALUES-->
+<!--(1, 'Halva', 500, 8, 'https://iledi.ru/wp-content/uploads/2023/11/takhinnaia-khalva-kunzhutnaia-1.webp'),-->
+<!--(2, 'Tort', 450, 6, 'https://safiabakery.uz/uploads/products/362_1715167369.jpg'),-->
+<!--(3, 'Shokolad', 550, 6, 'https://aniq.uz/photos/news/YNhkjQ06beRT3DV.jpeg'),-->
+<!--(4, 'Paxlava', 500, 7, 'https://merenga.uz/wp-content/uploads/2021/07/photo_2021-07-16_21-08-41.jpg'),-->
+<!--(5, 'Chak-chak', 450, 5, 'https://i.ytimg.com/vi/xBFJi9UDTyA/mqdefault.jpg'),-->
+<!--(6, 'Muzqaymoq', 200, 3, 'https://static.xabar.uz/crop/3/1/736_736_95_3193473007.jpg'),-->
+<!--(7, 'Shirin kulcha', 350, 5, 'https://daryo.uz/cache/2017/12/medium-maxresdefault-7-680x383.jpg'),-->
+<!--(8, 'Pirojnoe', 450, 5, 'https://safiabakery.uz/uploads/products/362_1715177916.jpg'),-->
+<!--(9, 'Shirin qoziqorin', 400, 4, 'https://api.cabinet.smart-market.uz/uploads/images/ff8081818a8c1a9cbaeed8ea'),-->
+<!--(10, 'Shakar qand', 300, 0, 'https://yuz.uz/imageproxy/1200x/https://yuz.uz/file/news/e81a8046675e4ef3eb0c2b1f6202a53c.jpg'),-->
+<!--(11, 'Murabbo', 250, 1, 'https://zira.uz/wp-content/uploads/2018/06/varene2.jpg'),-->
+<!--(12, 'Ceremona', 480, 8, 'https://storage.kun.uz/source/6/RF_ThdiwbG2AcsEhxGeBF7d8Z08nzm7_.jpg'),-->
+<!--(13, 'Marmelad', 320, 1, 'https://daryo.uz/cache/2022/08/photo_2022-08-29_10-16-04-1024x768.jpg'),-->
+<!--(14, 'Zefir', 270, 2, 'https://media.gettyimages.com/id/2033125385/it/foto/high-angle-view-of-sweet-food-in-plate-on-table.jpg?s=612x612&w=gi&k=20&c=zzYGHtI4c8GAtaGwPrrIEHqEW7DM7Gbx0DCFD6ePAAw='),-->
+<!--(15, 'Pechene', 300, 3, 'https://bozorcom.ams3.cdn.digitaloceanspaces.com/media/Lg_pechene_navruz_6_kg_galet.jpg'),-->
+<!--(16, 'Tiramisu', 420, 6, 'https://media.istockphoto.com/id/1398679790/photo/tiramisu-cake-on-white-ceramic-plate.jpg?s=612x612&w=0&k=20&c=2Xoc4JhqSh05A8bbUE1igFQDC-TF7vwT9_cQZWZyHCc='),-->
+<!--(17, 'Kulcha', 350, 5, 'https://lh4.googleusercontent.com/proxy/d3nzrJgbKX23yf1T3ctGrN8o7nIIw31M3p0ehqtqh2vF0jR9kTPUH89iLbpakxVdaMuWyaaTK9RbPVB3gGDpnvHtITnidvQjwqXke4I'),-->
+<!--(18, 'Keks', 380, 5, 'https://media.istockphoto.com/id/183060524/ru/%D1%84%D0%BE%D1%82%D0%BE/%D1%82%D1%80%D0%B8-%D0%BA%D0%B5%D0%BA%D1%81%D0%B0.jpg?s=612x612&w=0&k=20&c=5i7nmevTsKKVJ3XDCrLl-b_h_aLDIPM7jvP6TBT_fDk='),-->
+<!--(19, 'Ponchik', 320, 4, 'https://daryo.uz/cache/2020/04/donuts-ponchiki-glazur-vypechka-596x380.jpg'),-->
+<!--(20, 'Shirin kozinaki', 500, 6, 'https://cdn.azbyka.ru/recept/wp-content/uploads/2020/12/sunflower-seed-kozinaki-on-the-wooden-table.jpg'),-->
+<!--(21, 'Asalli keks', 480, 6, 'https://zira.uz/wp-content/uploads/2018/08/kofeyno-medoviy-keks-1.jpg'),-->
+<!--(22, 'Qulupnayli trayfl', 350, 3, 'https://zira.uz/wp-content/uploads/2020/04/klubnichnyi-&#45;&#45;trai&#45;&#45;fl-2.jpg'),-->
+<!--(23, 'Praga tort', 450, 6, 'https://daryo.uz/cache/2021/02/unnamed-7-700x466.jpg'),-->
+<!--(24, 'Qovoqcha pirogi', 300, 3, 'https://daryo.uz/static/2022/08/medium-photo_2022-08-01_20-34-34-2.jpg'),-->
+<!--(25, 'Guruch shirinligi', 350, 6, 'https://fotogranat.ru/wp-content/uploads/2023/12/molochnyi-risovyi-puding-1.webp'),-->
+<!--(26, 'Shakarli rogalik', 320, 0, 'https://zira.uz/wp-content/uploads/2019/09/rogaliki-maselko-10.jpg'),-->
+<!--(27, 'Chiskeyk', 450, 1, 'https://safiabakery.uz/uploads/products/362_1715177325.jpg'),-->
+<!--(28, 'Anorli pirog', 400, 5, 'https://oclo.ru/wp-content/uploads/2024/03/vypechka-s-varenem-2.webp'),-->
+<!--(29, 'Shirin pirzola', 420, 8, ''),-->
+<!--(30, 'Malinali kek', 380, 6, 'https://zira.uz/wp-content/uploads/2023/10/limonnye-keksy-s-dzhemom-5.jpg');-->
+
+
+
+
+
+
+
+
+<!--INSERT INTO drinks (id, name, calories, protein, img_url) VALUES-->
+<!--(1, 'Choy', 2, 0, 'https://t3.ftcdn.net/jpg/02/18/53/26/360_F_218532663_Meqbe06Mqr4X7DV3vfM4usMkfML47thJ.jpg'),-->
+<!--(2, 'Kofe', 5, 0, 'https://static.vecteezy.com/system/resources/thumbnails/023/513/862/small_2x/hot-coffee-cup-with-coffee-beans-wallpaper-coffee-photo.jpg'),-->
+<!--(3, 'Sut', 60, 3, 'https://www.shutterstock.com/image-photo/pouring-fresh-milk-into-glass-260nw-2309221837.jpg'),-->
+<!--(4, 'Ayran', 50, 4, 'https://www.shutterstock.com/image-photo/glass-turkish-traditional-drink-ayran-600nw-2442778701.jpg'),-->
+<!--(5, 'Sharbat', 120, 1, 'https://media.istockphoto.com/id/158268808/photo/fresh-citrus-juices.jpg?s=612x612&w=0&k=20&c=vflsrO3KXXtWfpOOzNZdBVgeIpLy21-OSUl-QPSgPmU='),-->
+<!--(6, 'Mineral suv', 0, 0, 'https://cdn.beta.qalampir.uz/uploads/Iv/f_U64otDwe1lJzuBViGguwK4jFQm5HFE.jpg'),-->
+<!--(7, 'Kompot', 90, 0, 'https://assets.tmecosys.cn/image/upload/t_web767x639/img/recipe/ras/Assets/dc7e46a4e1edefa4e0d35758337095d9/Derivates/af1f0b24cd0b918121a7ae4d4c3eb65969021457.jpg'),-->
+<!--(8, 'Limon choyi', 15, 0, 'https://assets.tmecosys.cn/image/upload/t_web767x639/img/recipe/ras/Assets/dc7e46a4e1edefa4e0d35758337095d9/Derivates/af1f0b24cd0b918121a7ae4d4c3eb65969021457.jpg'),-->
+<!--(9, 'Ziravorli choy', 20, 0, 'https://srcyrl.gmteafactory.com/Content/uploads/2023906340/2023031808570265255292e8f9469da136ce54f97d4fa8.jpg?size=300x0'),-->
+<!--(10, 'Pepsi', 150, 0, 'https://st2.depositphotos.com/1029150/8188/i/450/depositphotos_81881868-stock-photo-pepsi-bottle-drinks.jpg'),-->
+<!--(11, 'Coca-Cola', 140, 0, 'https://www.shutterstock.com/image-photo/kuala-lumpur-malaysia18th-aug-2016-600nw-471038117.jpg'),-->
+<!--(12, 'Sprite', 140, 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCqnAvWZzMUt1nwVH2W7xPoT9tWaDGEuE6dA&s'),-->
+<!--(13, 'Fanta', 160, 0, 'https://t3.ftcdn.net/jpg/04/59/68/76/360_F_459687602_UnQwEflTm1OJqcocV48Ll5zP6hVrPbNc.jpg'),-->
+<!--(14, 'Energetik ichimlik', 200, 0, 'https://t3.ftcdn.net/jpg/04/59/68/76/360_F_459687602_UnQwEflTm1OJqcocV48Ll5zP6hVrPbNc.jpg'),-->
+<!--(15, 'Smoothie', 180, 2, 'https://cdn.loveandlemons.com/wp-content/uploads/2023/05/mango-smoothie.jpg'),-->
+<!--(16, 'Limonad', 120, 0, 'https://media.istockphoto.com/id/544468096/photo/lemonade-with-lemon-mint-and-ice.jpg?s=612x612&w=0&k=20&c=XkJqJVWwovEKvCJM7fY59hL_rj7WgH9v_0ZBjflugKA='),-->
+<!--(17, 'Muzqaymoq kokteyli', 250, 5, 'https://iledi.ru/wp-content/uploads/2023/11/molochnye-kokteili-1.webp'),-->
+<!--(18, 'Uzum sharbat', 90, 1, 'https://uzsmart.uz/savol-javob/img/shifobaxsh-sharbat.jpg'),-->
+<!--(19, 'Olma sharbat', 85, 1, 'https://srcyrl.tpmach.com/Content/uploads/2021742509/20210906171944a5d5b9007be24644b3bbb7d8c5d69a4b.jpg'),-->
+<!--(20, 'Sabzi sharbat', 70, 1, 'https://shaah.uz/wp-content/uploads/2024/05/sabzi-sharbati.jpg'),-->
+<!--(21, 'Tuxum kokteyli', 300, 10, 'https://drink-drink.ru/wp-content/uploads/2021/10/p_o-800x530.jpg'),-->
+<!--(22, 'Gazlangan suv', 0, 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPA7sEIXp5c9MgQuEO3c-2KAIaU35lCukCHick7GO4gSuvClXUxoN1bmrN60Y3Wyhu3u8&usqp=CAU'),-->
+<!--(23, 'Qatiq', 50, 5, 'https://yuz.uz/imageproxy/1200x/https://yuz.uz/file/news/6883ead1b108561743741f96a68b1feb.jpg'),-->
+<!--(24, 'Greypfrut sharbat', 100, 1, 'https://biotus.uz/media/amasty/amoptmobile/catalog/product/cache/1a5f7a0f055b7b526c4e22471a441dbb/e/l/elfa-921582_jpg.webp'),-->
+<!--(25, 'Malina sharbat', 110, 1, 'https://img.freepik.com/fotos-premium/coctel-mojito-frambuesa-sobre-fondo-blanco_690179-4725.jpg'),-->
+<!--(26, 'Kokos suvi', 50, 0, 'https://t4.ftcdn.net/jpg/07/08/68/31/360_F_708683198_K08AiNpIoqShD4munMhkRnL25q7g0lpg.jpg'),-->
+<!--(27, 'Tuxum qatiq', 200, 7, 'https://t4.ftcdn.net/jpg/07/08/68/31/360_F_708683198_K08AiNpIoqShD4munMhkRnL25q7g0lpg.jpg'),-->
+<!--(28, 'Apelsin sharbat', 85, 1, 'https://t4.ftcdn.net/jpg/07/08/68/31/360_F_708683198_K08AiNpIoqShD4munMhkRnL25q7g0lpg.jpg'),-->
+<!--(29, 'Anor sharbat', 120, 1, 'https://chakchak.uz/uploads/images/tips/cc52940a172a1b88.jpg'),-->
+<!--(30, 'Qulupnayli smuzi', 180, 2, 'https://oclo.ru/wp-content/uploads/2024/03/klubnichnovishnevyi-smuzi-1.webp');-->
+
+

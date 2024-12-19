@@ -1,0 +1,375 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Interactive Calorie Page</title>-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);-->
+<!--            overflow-x: hidden;-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background-color: #343a40;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            padding: 10px 20px;-->
+<!--            position: fixed;-->
+<!--            top: 0;-->
+<!--            width: 100%;-->
+<!--            z-index: 100;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--        .navbar a {-->
+<!--            color: white;-->
+<!--            text-decoration: none;-->
+<!--            padding: 10px;-->
+<!--            transition: all 0.3s;-->
+<!--        }-->
+<!--        .navbar a:hover {-->
+<!--            color: #ffc107;-->
+<!--        }-->
+<!--        .main-section {-->
+<!--            margin-top: 70px;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .section {-->
+<!--            margin-bottom: 50px;-->
+<!--            padding: 20px;-->
+<!--            background: white;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);-->
+<!--            transition: transform 0.3s;-->
+<!--        }-->
+<!--        .section:hover {-->
+<!--            transform: translateY(-10px);-->
+<!--        }-->
+<!--        .title {-->
+<!--            font-size: 2rem;-->
+<!--            color: #343a40;-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .title::after {-->
+<!--            content: '';-->
+<!--            width: 100px;-->
+<!--            height: 4px;-->
+<!--            background: #ffc107;-->
+<!--            display: block;-->
+<!--            margin: 10px auto;-->
+<!--        }-->
+<!--        .icon-container {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            gap: 20px;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        .icon {-->
+<!--            font-size: 2rem;-->
+<!--            color: #343a40;-->
+<!--            transition: all 0.3s;-->
+<!--        }-->
+<!--        .icon:hover {-->
+<!--            color: #ffc107;-->
+<!--            transform: scale(1.2);-->
+<!--        }-->
+<!--        footer {-->
+<!--            background-color: #343a40;-->
+<!--            color: white;-->
+<!--            text-align: center;-->
+<!--            padding: 10px;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        footer a {-->
+<!--            color: #ffc107;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        footer a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+<!--        @keyframes cursorTrail {-->
+<!--            0% { transform: scale(1); opacity: 0.9; }-->
+<!--            50% { transform: scale(1.5); opacity: 0.5; }-->
+<!--            100% { transform: scale(2); opacity: 0; }-->
+<!--        }-->
+<!--        .cursor {-->
+<!--            width: 20px;-->
+<!--            height: 20px;-->
+<!--            border-radius: 50%;-->
+<!--            background: rgba(255, 193, 7, 0.8);-->
+<!--            position: absolute;-->
+<!--            pointer-events: none;-->
+<!--            animation: cursorTrail 0.6s ease-out infinite;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="navbar">-->
+<!--        <a href="#">Home</a>-->
+<!--        <a href="#section1">Calories</a>-->
+<!--        <a href="#section2">Activities</a>-->
+<!--        <a href="#contact">Contact</a>-->
+<!--    </div>-->
+
+<!--    <div class="main-section">-->
+<!--        <div id="section1" class="section">-->
+<!--            <h2 class="title">Calorie Breakdown</h2>-->
+<!--            <p>Explore the calories of your favorite meals and snacks. Click on a food item to see how much exercise it takes to burn it off!</p>-->
+<!--            <div class="icon-container">-->
+<!--                <i class="fas fa-utensils icon"></i>-->
+<!--                <i class="fas fa-apple-alt icon"></i>-->
+<!--                <i class="fas fa-pizza-slice icon"></i>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div id="section2" class="section">-->
+<!--            <h2 class="title">Activity Suggestions</h2>-->
+<!--            <p>Discover the best activities to balance out your calorie intake. From running to cycling, there’s something for everyone!</p>-->
+<!--            <div class="icon-container">-->
+<!--                <i class="fas fa-running icon"></i>-->
+<!--                <i class="fas fa-biking icon"></i>-->
+<!--                <i class="fas fa-dumbbell icon"></i>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <footer id="contact">-->
+<!--        <p>Designed with <i class="fas fa-heart"></i> by YourName</p>-->
+<!--        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>-->
+<!--    </footer>-->
+
+<!--    <div id="cursor" class="cursor"></div>-->
+
+<!--    <script>-->
+<!--        const cursor = document.getElementById('cursor');-->
+
+<!--        document.addEventListener('mousemove', (e) => {-->
+<!--            cursor.style.top = `${e.clientY}px`;-->
+<!--            cursor.style.left = `${e.clientX}px`;-->
+<!--        });-->
+
+<!--        document.addEventListener('click', () => {-->
+<!--            const ripple = document.createElement('div');-->
+<!--            ripple.className = 'cursor';-->
+<!--            ripple.style.top = cursor.style.top;-->
+<!--            ripple.style.left = cursor.style.left;-->
+<!--            document.body.appendChild(ripple);-->
+
+<!--            setTimeout(() => {-->
+<!--                ripple.remove();-->
+<!--            }, 600);-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qishki Sog'liq Sayti</title>
+    <style>
+        /* --- Barcha Stil --- */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #2b5876, #4e4376);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            background: rgba(44, 62, 80, 0.9);
+            color: #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #1abc9c;
+        }
+
+        /* --- Kirish Animatsiyasi --- */
+        .intro {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: url('https://images.unsplash.com/photo-1519682577862-22b62b24e493?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .intro h1 {
+            font-size: 3.5em;
+            text-shadow: 2px 2px 8px #000;
+        }
+        .intro p {
+            font-size: 1.5em;
+            margin-top: 10px;
+            text-shadow: 1px 1px 5px #000;
+        }
+        .btn {
+            margin-top: 20px;
+            background: #1abc9c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #16a085;
+        }
+
+        /* --- Bo'limlar Stil --- */
+        .section {
+            text-align: center;
+            margin: 100px auto;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease;
+        }
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .section h2 {
+            font-size: 2.5em;
+            color: #1abc9c;
+        }
+        .section p {
+            font-size: 1.2em;
+            color: #ecf0f1;
+        }
+
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div><strong>Caloria AI</strong></div>
+        <div>
+            <a href="food">Sog'lom Oziq-ovqat</a>
+            <a href="about">Biz haqimizda</a>
+            <a href="Fitnes">Fitness</a>
+            <a href="contact">Bog'lanish</a>
+        </div>
+    </nav>
+
+
+    <section class="intro">
+        <h1>Salomatlik va Sog'lom Turmush Tarzi</h1>
+        <p>O'zingizga g'amxo'rlik qiling, sog'lom hayot kechiring!</p>
+        <button class="btn" onclick="scrollToSections()">Boshlash</button>
+    </section>
+
+
+    <div id="ozuq" class="section">
+        <h2>&#127822; Sog'lom Oziq-ovqat</h2>
+        <p>O'zingizga hohlagan ovqat, ichimlik, shirinliklarni caloriasi va proteini.</p>
+    </div>
+
+    <div id="diet" class="section">
+        <h2>&#127869; Dietalar</h2>
+        <p>Muvozanatli ovqatlanish rejimlari.</p>
+    </div>
+
+    <div id="fitness" class="section">
+        <h2>&#127947; Fitness</h2>
+        <p>Sog'lom tanangizni shakllantirish mashg'ulotlari.</p>
+    </div>
+
+    <div id="mental" class="section">
+        <h2>&#129504; Bog'lanish</h2>
+        <p>Kuchli mutahhasislar bilan bog'laning.</p>
+    </div>
+
+
+
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.classList.add("snowflake");
+
+            const size = Math.random() * 10 + 5;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 10000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        function scrollToSections() {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+

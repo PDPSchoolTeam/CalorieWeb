@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Videos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0d1b2a, #1b263b);
+            color: white;
+            overflow: hidden; /* Qor zarralari chiqmasin */
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .category {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .category h2 {
+            text-align: center;
+        }
+
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        iframe {
+            width: 80%;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .daily-ration-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            color: white;
+        }
+
+        .daily-ration-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
+        }
+
+        .saved-items {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .saved-items h3 {
+            text-align: center;
+        }
+
+        .saved-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .action-buttons button {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .edit-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #0056b3;
+        }
+
+        .delete-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        /* Qor yog'ishi */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes side-to-side {
+            to {
+                transform: translateX(20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Erkaklar va Ayollar uchun bo'limlar -->
+    <div class="container">
+        <div class="category">
+            <h2><i class="fas fa-male"></i> Erkaklar</h2>
+            <div class="video-container" id="male-videos">
+                <!-- Erkaklar uchun video -->
+            </div>
+        </div>
+
+        <div class="category">
+            <h2><i class="fas fa-female"></i> Ayollar</h2>
+            <div class="video-container" id="female-videos">
+                <!-- Ayollar uchun video -->
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="daily-ration-btn" onclick="showModal()">Kunlik ratsion <i class="fas fa-utensils"></i></button>
+    </div>
+
+    <div class="saved-items" id="savedItems">
+        <h3>Saqlanganlar <i class="fas fa-save"></i></h3>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const maleVideos = [
+            "https://www.youtube.com/embed/aUm6jWvVwdQ",
+            "https://www.youtube.com/embed/f7IVaCecc-I",
+            "https://www.youtube.com/embed/9Uc1qcjmosA"
+        ];
+
+        const femaleVideos = [
+            "https://www.youtube.com/embed/a",
+            "https://www.youtube.com/embed/b",
+            "https://www.youtube.com/embed/c"
+        ];
+
+        const maleContainer = document.getElementById('male-videos');
+        const femaleContainer = document.getElementById('female-videos');
+        const savedItemsContainer = document.getElementById('savedItems');
+
+        let savedItems = [];
+
+        function loadVideos(videos, container) {
+            videos.forEach(video => {
+                const div = document.createElement('div');
+                div.className = 'video-item';
+                div.innerHTML = `
+                    <input type="checkbox" data-link="${video}">
+                    <iframe src="${video}" allowfullscreen></iframe>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        loadVideos(maleVideos, maleContainer);
+        loadVideos(femaleVideos, femaleContainer);
+
+        function showModal() {
+            const selectedVideos = [];
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(input => {
+                selectedVideos.push(input.dataset.link);
+            });
+
+            if (selectedVideos.length === 0) {
+                alert("Iltimos, kamida bitta video tanlang!");
+                return;
+            }
+
+            selectedVideos.forEach(video => {
+                const item = {
+                    link: video,
+                    time1: '',
+                    time2: '',
+                    time3: '',
+                    note: ''
+                };
+                savedItems.push(item);
+                renderSavedItems();
+            });
+        }
+
+        function renderSavedItems() {
+            savedItemsContainer.innerHTML = '<h3>Saqlanganlar <i class="fas fa-save"></i></h3>';
+            savedItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'saved-item';
+                div.innerHTML = `
+                    <iframe src="${item.link}" allowfullscreen></iframe>
+                    <div>Vaqtlar: ${item.time1 || '---'} | ${item.time2 || '---'} | ${item.time3 || '---'}</div>
+                    <div>Eslatma: ${item.note || 'Yo\'q'}</div>
+                    <div class="action-buttons">
+                        <button class="edit-btn" onclick="editItem(${index})">O'zgartirish</button>
+                        <button class="delete-btn" onclick="deleteItem(${index})">O'chirish</button>
+                    </div>
+                `;
+                savedItemsContainer.appendChild(div);
+            });
+        }
+
+        function editItem(index) {
+            const item = savedItems[index];
+            const time1 = prompt("Vaqt 1 ni kiriting:", item.time1);
+            const time2 = prompt("Vaqt 2 ni kiriting:", item.time2);
+            const time3 = prompt("Vaqt 3 ni kiriting:", item.time3);
+            const note = prompt("Eslatmani kiriting:", item.note);
+
+            savedItems[index] = {
+                ...item,
+                time1: time1 || item.time1,
+                time2: time2 || item.time2,
+                time3: time3 || item.time3,
+                note: note || item.note
+            };
+
+            renderSavedItems();
+        }
+
+        function deleteItem(index) {
+            if (confirm("Ushbu elementni o'chirmoqchimisiz?")) {
+                savedItems.splice(index, 1);
+                renderSavedItems();
+            }
+        }
+
+
+        setInterval(() => {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.fontSize = Math.random() * 15 + 15 + 'px';
+            snowflake.style.animationDuration = Math.random() * 2 + 2 + 's';
+            snowflake.style.animationDelay = Math.random() *  + 's'; sh
+            snowflake.style.opacity = Math.random() * 0.9 + 0.1;
+            snowflake.textContent = '❄';
+            document.body.appendChild(snowflake);
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }, 200);
+    </script>
+</body>
+</html>
+

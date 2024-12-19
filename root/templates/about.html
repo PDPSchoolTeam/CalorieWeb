@@ -1,148 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamoa Haqida</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
-        }
-
-        html {
-            box-sizing: border-box;
-        }
-
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-
-        .column {
-            float: left;
-            width: 33.3%;
-            margin-bottom: 16px;
-            padding: 0 8px;
-        }
-
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 8px;
-        }
-
-        .about-section {
-            padding: 50px;
-            text-align: center;
-            background-color: #474e5d;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
             color: white;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32"><text y="50%" x="50%" dy=".35em" text-anchor="middle" font-size="30" fill="white">❄</text></svg>'), auto;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
         }
 
         .container {
-            padding: 0 16px;
-        }
-
-        .container::after, .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .title {
-            color: grey;
-        }
-
-        .button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
             text-align: center;
-            cursor: pointer;
+            padding: 50px 20px;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            padding: 20px;
+            color: black;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .card p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .button:hover {
-            background-color: #555;
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            animation: fall linear infinite;
         }
 
-        @media screen and (max-width: 650px) {
-            .column {
-                width: 100%;
-                display: block;
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
             }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        .snowman-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transform: translate(50%, -50%);
+            width: 30px;
+            height: 30px;
         }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">Haqida</div>
+        <div class="links">
+            <a href="/root/static">Bosh sahifa</a>
+            <a href="contact">Kontakt</a>
+        </div>
+    </div>
 
-<div class="about-section">
-    <h1>About Us Page</h1>
-    <p>Some text about who we are and what we do.</p>
-    <p>Resize the browser window to see that this page is responsive by the way.</p>
-</div>
+    <div class="snow" id="snow"></div>
 
-<h2 style="text-align:center">Our Team</h2>
-<div class="row">
-    <div class="column">
-        <div class="card">
-            <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-            <div class="container">
-                <h2>Abubakr Abdumalikov</h2>
-                <p class="title">CEO & coder</p>
-                <p>jamoa yetakchisi .</p>
-                <p>@aaafdp</p>
-                <p>
-                    <button class="button">Contact</button>
-                </p>
+    <div class="container">
+        <h1>Bizning Jamoamiz</h1>
+        <div class="team">
+            <div class="card">
+                <img src="https://cdn4.vectorstock.com/i/1000x1000/64/68/santa-claus-avatar-happy-new-year-merry-christmas-vector-34486468.jpg" alt="Jamoa a'zosi">
+                <img class="snowman-icon" src="https://static.vecteezy.com/system/resources/previews/014/873/846/non_2x/snowman-with-hat-snowman-icon-template-winter-symbol-icon-christmas-and-new-year-greeting-card-design-element-illustration-vector.jpg" alt="Qorbobo">
+                <h3>Abubakr </h3>
+                <p>Lavozim: C.E.O</p>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn4.vectorstock.com/i/1000x1000/64/68/santa-claus-avatar-happy-new-year-merry-christmas-vector-34486468.jpg" alt="Jamoa a'zosi">
+                <img class="snowman-icon" src="https://static.vecteezy.com/system/resources/previews/014/873/846/non_2x/snowman-with-hat-snowman-icon-template-winter-symbol-icon-christmas-and-new-year-greeting-card-design-element-illustration-vector.jpg" alt="Qorbobo">
+                <h3>Azamat</h3>
+                <p>Lavozim: DB Manager</p>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn4.vectorstock.com/i/1000x1000/64/68/santa-claus-avatar-happy-new-year-merry-christmas-vector-34486468.jpg" alt="Jamoa a'zosi">
+                <img class="snowman-icon" src="https://static.vecteezy.com/system/resources/previews/014/873/846/non_2x/snowman-with-hat-snowman-icon-template-winter-symbol-icon-christmas-and-new-year-greeting-card-design-element-illustration-vector.jpg" alt="Qorbobo">
+                <h3>Nurbek</h3>
+                <p>Lavozim: Scientist</p>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn4.vectorstock.com/i/1000x1000/64/68/santa-claus-avatar-happy-new-year-merry-christmas-vector-34486468.jpg" alt="Jamoa a'zosi">
+                <img class="snowman-icon" src="https://static.vecteezy.com/system/resources/previews/014/873/846/non_2x/snowman-with-hat-snowman-icon-template-winter-symbol-icon-christmas-and-new-year-greeting-card-design-element-illustration-vector.jpg" alt="Qorbobo">
+                <h3>Muhammad Ayub</h3>
+                <p>Lavozim: Designer</p>
             </div>
         </div>
     </div>
 
-    <div class="column">
-        <div class="card">
-            <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-            <div class="container">
-                <h2>Nurbek Majidov</h2>
-                <p class="title">Coder</p>
-                <p>proyekt .</p>
-                <p>mike@example.com</p>
-                <p>
-                    <button class="button">Contact</button>
-                </p>
-            </div>
-        </div>
-    </div>
+    <script>
+        const snowContainer = document.getElementById('snow');
 
-    <div class="column">
-        <div class="card">
-            <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-            <div class="container">
-                <h2>Azamat Abdurahimov</h2>
-                <p class="title">Product Manager</p>
-                <p>marketing boshlig'i.</p>
-                <p>@Anthony_R_J</p>
-                <p>
-                    <button class="button">Contact</button>
-                </p>
-            </div>
-        </div>
-    </div>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflake.innerHTML = '&#10052;';
+            snowContainer.appendChild(snowflake);
 
-    <div class="column">
-        <div class="card">
-            <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-            <div class="container">
-                <h2>Muhammad Ayub</h2>
-                <p class="title">Designer</p>
-                <p>jamoa dizayneri</p>
-                <p>@umrw1</p>
-                <p>
-                    <button class="button">Contact</button>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
 
+        setInterval(createSnowflake, 50);
+    </script>
 </body>
 </html>
+
