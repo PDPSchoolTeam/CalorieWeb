@@ -1,37 +1,78 @@
-# CalorieWeb - Kundalik Kaloriya Nazorat Qiling!
-# **ChatBot** 🤖  
-**Aqlli muloqot va avtomatlashtirish uchun Telegram bot**  
+# Caloriya Web: Sog'lom Turmushning Yechimi
 
-### 📚 **Tavsif**  
-ChatBot foydalanuvchilarga real vaqtda yordam berish, savollarga javob berish va vazifalarni avtomatlashtirish uchun yaratilgan. U shaxsiy yordamchi sifatida yoki biznesingiz uchun samarali vosita bo‘lishi mumkin.  
+**Caloriya Web** - bu ovqat va ichimliklarning kaloriya va protein miqdorini aniqlashga yordam beradigan innovatsion platforma. U sog'lom turmush tarzi uchun foydali maslahatlar, retseptlar va ovqatlanish rejalari bilan ta'minlaydi.
 
 ---
 
-### ✨ **Asosiy imkoniyatlar**  
-- **Aqlli javoblar**: Foydalanuvchi savollariga tezkor va aniq javoblar.  
-- **Moslashuvchanlik**: Har xil mavzularda muloqot qilish qobiliyati.  
-- **Avtomatlashtirilgan xizmatlar**: Ma’lumot taqdim etish, buyurtma qabul qilish va boshqa funksiyalarni bajarish.  
-- **Qulay boshqaruv**: Telegramda oddiy buyruqlar orqali muloqotni boshlang.  
+### Bosh Sahifa
+
+![Bosh Sahifa](https://github.com/user-attachments/assets/4c6b6b8c-acc0-43d8-939f-073b554a705d)
+
+
+Kompakt va foydalanishga qulay bosh sahifa foydalanuvchilarga platformaning barcha imkoniyatlari haqida ma'lumot beradi.
+
+
+
+## Nima uchun Caloriya Web?
+
+Caloriya Web sog'lom hayot tarzini yoqlovchilar uchun mo'ljallangan va quyidagi funksiyalarni taqdim etadi:
+
+### 1. **Kaloriyani Hisoblash**
+- Har qanday ovqat yoki ichimlikning kaloriyasi va protein miqdorini aniqlash imkoniyati.
+- Oson qidiruv orqali oziq-ovqatlar ma'lumotlar bazasidan foydalanuvchiga qulay xizmat.
+
+### 2. **Sog'lom Maslahatlar**
+- Kundalik hayotda sog'lom turmush tarzi uchun foydali maslahatlar va tavsiyalar taklif qiladi.
+- Turli sog'liqni saqlash bo'yicha mutaxassislar tomonidan ishlab chiqilgan bilimlar.
+
+### 3. **Retseptlar**
+- Turli xil sog'lom retseptlar va ovqatlanish rejalari taqdim etiladi.
+- Retseptlar foydalanuvchining shaxsiy maqsadlariga moslashtiriladi.
 
 ---
 
-### 🚀 **Foydalanish bo‘yicha qo‘llanma**  
-1. **Botni ishga tushirish**:  
-   Botni Telegramda /start buyrug‘i bilan ishga tushiring.  
+## Asosiy Imkoniyatlar
 
-2. **Savollar berish**:  
-   Foydalanishga tayyor ekanligini tekshirib, botdan xizmatlar uchun foydalaning.  
-
-3. **Moslashuv**:  
-   Botni o‘z ehtiyojlaringizga moslashtirish uchun sozlang.  
+- **Interaktiv Profil**: Foydalanuvchilar o'z vazni, yoshi va maqsadlariga mos ravishda shaxsiy ma'lumotlarini kiritib, dietani boshqarishlari mumkin.
+- **Kunlik Jurnal**: Kun davomida iste'mol qilingan oziq-ovqatlarni kuzatish va kaloriyalarni nazorat qilish.
+- **Grafiklar va Hisobotlar**: Vizualizatsiya orqali kaloriya iste'molini va ovqatlanish balansini kuzatish imkoniyati.
 
 ---
 
-### 🛠 **Loyihani o‘rnatish**  
-1. Repozitoriyani klonlash:  
-   ```bash  
-   git clone https://github.com/username/chatbot.git  
-   cd chatbot  
-   ```
+## Platforma Ko'rinishlari
 
-![photo_2024-12-19 09 22 40](https://github.com/user-attachments/assets/5bd60841-9613-4491-938c-6ebc6517c092)
+
+### Kaloriya Hisoblagich
+
+Oddiy va tezkor tarzda oziq-ovqat kaloriyalarini hisoblash uchun mo'ljallangan.
+
+### Sog'lom Maslahatlar
+
+Foydalanuvchilar uchun foydali turmush tarzini saqlashga yordam beradigan maslahatlar va tavsiyalar.
+
+### Fitness bo'limi
+
+Erkak va ayollar uchun video darslar mavjud.
+
+---
+## Foydalanilgan texnologiyalar 🛠
+- **Dasturlash tili**: Python
+- **Framework**: Django
+- **Datatbase**: Postgresql
+
+## Aloqa 📧
+Loyiha bo'yicha savol yoki fikr-mulohazalar uchun loyiha jamoasi bilan bog'laning:
+- **Abdumalikov Abubakir** 
+- **Rahimov Azamat**
+- **Majidov Nurbek**
+- **Umarov MuhammadAyub**
+
+
+
+## Loyihaga Hissa Qo'shish
+
+Agar siz loyiha rivojiga hissa qo'shmoqchi bo'lsangiz, quyidagi bosqichlarni bajaring:
+
+1. Repozitoriyani clone qiling:
+   ```bash
+   git clone https://github.com/PDPSchoolTeam/CalorieWeb.git
